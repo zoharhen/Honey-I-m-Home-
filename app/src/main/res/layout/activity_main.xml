@@ -6,76 +6,69 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <Button
+        android:id="@+id/clearHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="75dp"
+        android:fontFamily="@font/andika"
+        android:text="Clear home location"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/setHome"
+        app:layout_constraintBottom_toTopOf="@+id/trackingButton" />
+
     <TextView
         android:id="@+id/currentLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/andika"
         android:text="Current location info:"
-        app:layout_constraintBottom_toTopOf="@id/currentLocationInfoTextView"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <TextView
-        android:id="@+id/currentLocationInfoTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="268dp"
-        android:fontFamily="@font/andika"
-        android:text="Latitude:\nLongitude:\nAccuracy:"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/currentLocation" />
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/homeLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="244dp"
         android:fontFamily="@font/andika"
         android:text="Home location info:"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/currentLocationInfoTextView"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@id/currentLocationInfoTextView" />
 
     <TextView
-        android:id="@+id/homeLocationInfoTextView"
+        android:id="@+id/currentLocationInfoTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="192dp"
         android:fontFamily="@font/andika"
-        android:text="Latitude:\nLongitude:"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="Latitude:\nLongitude:\nAccuracy:"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/homeLocation" />
+        app:layout_constraintTop_toBottomOf="@+id/currentLocation"
+        android:visibility="gone"/>
 
     <Button
         android:id="@+id/setHome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="92dp"
+        android:layout_marginTop="75dp"
         android:fontFamily="@font/andika"
         android:text="Set location as home"
         app:layout_constraintEnd_toStartOf="@+id/clearHome"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/homeLocation" />
+        app:layout_constraintBottom_toTopOf="@+id/trackingButton" />
 
-    <Button
-        android:id="@+id/clearHome"
+    <TextView
+        android:id="@+id/homeLocationInfoTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="92dp"
         android:fontFamily="@font/andika"
-        android:text="Clear home location"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/setHome"
-        app:layout_constraintTop_toBottomOf="@+id/homeLocation" />
+        android:text="Latitude:\nLongitude:"
+        app:layout_constraintTop_toBottomOf="@id/homeLocation"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 
     <Button
         android:id="@+id/trackingButton"

@@ -29,7 +29,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var trackingButton: Button
 
     private lateinit var tracker: LocationTracker
-    private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var sp: SharedPreferences
     private lateinit var broadCastReceiver: BroadcastReceiver
 
@@ -38,23 +37,20 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-        tracker = LocationTracker(this, fusedLocationClient)
-
+        tracker = LocationTracker(this, LocationServices.getFusedLocationProviderClient(this))
         sp = getSharedPreferences("homeLocation", Context.MODE_PRIVATE)
-        retrieveHomeFromSP()
 
         initViews()
         initButtons()
 
         initBroadcastReceiver()
+        retrieveHomeFromSP()
     }
 
     private fun retrieveHomeFromSP() {
         val json: String? = sp.getString("HomeLocation", "")
         if (json != "") {
-            val home: LocationInfo = Gson().fromJson<LocationInfo>(json, LocationInfo::class.java)
-            tracker.currentLocation = home
+            tracker.currentLocation = Gson().fromJson<LocationInfo>(json, LocationInfo::class.java)
             this.setHome.performClick()
         }
     }
@@ -90,15 +86,16 @@ class MainActivity : AppCompatActivity() {
             if (!checkPermission()) {
                 requestPermissions()
             } else if (!isLocationEnabled()) {
-                Toast.makeText(this, "Please enable location ", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Please enable location", Toast.LENGTH_LONG).show()
                 startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
             } else {
                 if (!tracker.isTrackingOn) {
-                    tracker.startTracking()
                     trackingButton.text = "Stop tracking location"
+                    tracker.startTracking()
+
                 } else {
-                    tracker.stopTracking()
                     trackingButton.text = "Start tracking location"
+                    tracker.stopTracking()
                 }
             }
         }
@@ -149,9 +146,9 @@ class MainActivity : AppCompatActivity() {
             if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
                 trackingButton.performClick()
             }
-        }
-        else {
-            Toast.makeText(applicationContext, "App can't operate without location permission", Toast.LENGTH_LONG).show()
+            else {
+                Toast.makeText(applicationContext, "App can't operate without location permission", Toast.LENGTH_LONG).show()
+            }
         }
     }
 
@@ -162,6 +159,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onLocationUpdate() {
+        val currentLocationTitle: TextView = findViewById(R.id.currentLocation)
+        currentLocationTitle.visibility = TextView.VISIBLE
+        this.currentLocationInfo.visibility = TextView.VISIBLE
         val info = "Latitude: ${tracker.currentLocation?.latitude}\nLongitude: ${tracker.currentLocation?.longitude}\n" +
                 "Accuracy: ${tracker.currentLocation?.accuracy}"
         this.currentLocationInfo.text = info
