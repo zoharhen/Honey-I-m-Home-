@@ -8,13 +8,24 @@
 
     <Button
         android:id="@+id/clearHome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
         android:layout_marginTop="75dp"
         android:fontFamily="@font/andika"
         android:text="Clear home location"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/setHome"
+        app:layout_constraintBottom_toTopOf="@+id/testSms" />
+
+    <Button
+        android:id="@+id/testSms"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="75dp"
+        android:fontFamily="@font/andika"
+        android:text="Test SMS"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/setPhoneButton"
         app:layout_constraintBottom_toTopOf="@+id/trackingButton" />
 
     <TextView
@@ -51,14 +62,24 @@
 
     <Button
         android:id="@+id/setHome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
         android:layout_marginTop="75dp"
         android:fontFamily="@font/andika"
         android:text="Set location as home"
         app:layout_constraintEnd_toStartOf="@+id/clearHome"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/trackingButton" />
+        app:layout_constraintBottom_toTopOf="@+id/setPhoneButton" />
+
+    <Button
+        android:id="@+id/setPhoneButton"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:fontFamily="@font/andika"
+        android:text="Set SMS phone number"
+        app:layout_constraintBottom_toTopOf="@+id/trackingButton"
+        app:layout_constraintEnd_toStartOf="@+id/testSms"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/homeLocationInfoTextView"
