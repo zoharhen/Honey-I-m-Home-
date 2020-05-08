@@ -1,1 +1,9 @@
-I pledge the highest level of ethical principles in support of academic excellence.  I ensure that all of my work reflects my own abilities and not those of someone else
+I pledge the highest level of ethical principles in support of academic excellence.
+I ensure that all of my work reflects my own abilities and not those of someone else
+
+EX6 question:
+Currently, every time we send an SMS we also show notification "sending sms: .....".
+What should we add in our code-base so that when the SMS will get delivered, this notification's text will be changed to "sms sent: ......"?
+
+answer:
+we need to add another action to our broadcastReceiver, that, given a notificationID (in the param, storage in an intent), will change the notification message.
